@@ -1,0 +1,25 @@
+<h2>Le restaurant </h2>
+<h2><%= @restaurant.name %></h2>
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.phone_number %></p>
+<p><%= @restaurant.category %></p>
+<h2>Les avis</h2>
+<% @restaurant.reviews.each do |review| %>
+  <p><%= review.content %></p>
+  <p><%= review.rating %></p>
+<% end %>
+
+<%= form_with model: [@restaurant, @restaurant.reviews.build] do |form| %>
+  <h2>Add an avis:</h2>
+  <p>
+    <%= form.label :rating %><br>
+    <%= form.text_field :rating %>
+  </p>
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
